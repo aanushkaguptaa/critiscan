@@ -11,7 +11,7 @@ const cardData = [
 
 const Section2 = () => {
   return (
-    <section className={styles.section}>
+    <section className={styles.section} id="section2">
       <div className={styles.cardGrid}>
         {cardData.map((card, index) => (
           <div key={index} className={styles.card}>

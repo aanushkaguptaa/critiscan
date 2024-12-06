@@ -2,9 +2,9 @@
     display: grid;
     grid-template-columns: 1fr 1fr;
     min-height: 100vh;
-  }
-  
-  .scanSection {
+}
+
+.scanSection {
     background-color: #273617;
     color: #FEFADF;
     display: flex;
@@ -18,25 +18,98 @@
     width: 80%;
     justify-self: center;
     align-self: center;
-  }
-  
-  .scanSection h2 {
+}
+
+.scanSection h2 {
     font-size: 1.5rem;
     text-align: center;
-  }
-  
-  .icons {
+}
+
+.iconButton {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
     display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.2s ease;
+}
+
+.iconButton:hover {
+    transform: scale(1.1);
+}
+
+.icons {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     gap: 3rem;
-  }
-  
-  .textSection {
+    width: 100%;
+}
+
+.iconButton img {
+    width: 30px;
+    height: 30px;
+    object-fit: contain;
+}
+
+.textSection {
     display: flex;
     align-items: center;
     padding: 4rem;
-  }
-  
-  .textSection h4{
+}
+
+.textSection h4 {
     font-size: 2rem;
     line-height: 1.2;
-  }
+}
+
+@media (max-width: 768px) {
+    .section {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        padding: 0 10px;
+    }
+
+    .scanSection {
+        order: 2;
+        width: 80%;
+        padding: 15px;
+        margin: 10px 0;
+        border-radius: 12px;
+    }
+
+    .scanSection img:first-child {
+        width: 100%;
+        max-width: 250px;
+        height: auto;
+    }
+
+    .scanSection h2 {
+        font-size: 0.9rem;
+        margin: 10px 0;
+        text-align: center;
+    }
+
+    .icons {
+        gap: 2rem;
+    }
+
+    .iconButton img {
+        width: 10px;
+        height: 10px;
+    }
+
+    .textSection {
+        order: 1;
+        padding: 15px;
+        text-align: center;
+    }
+
+    .textSection h4 {
+        font-size: 1rem;
+        line-height: 1.4;
+    }
+}
