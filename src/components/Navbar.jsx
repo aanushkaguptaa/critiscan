@@ -3,7 +3,22 @@
 import React, { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import styles from '../styles/Navbar.module.css';
+
+const NavLink = ({ href, children }) => {
+  const pathname = usePathname();
+  const isActive = pathname === href;
+  
+  return (
+    <Link 
+      href={href}
+      className={isActive ? styles.active : styles.link}
+    >
+      {children}
+    </Link>
+  );
+};
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -14,14 +29,16 @@ const Navbar = () => {
 
   return (
     <nav className={styles.navbar}>
-      <Image 
-        src="/logo.svg" 
-        alt="Logo" 
-        width={250} 
-        height={125} 
-      />
+      <Link href="/" className={styles.logoLink}>
+        <Image 
+          src="/logo.svg" 
+          alt="Logo" 
+          width={250} 
+          height={125} 
+          priority
+        />
+      </Link>
       
-      {/* Hamburger Menu Button */}
       <div 
         className={`${styles.hamburger} ${isMenuOpen ? styles.open : ''}`} 
         onClick={toggleMenu}
@@ -31,11 +48,12 @@ const Navbar = () => {
         <span></span>
       </div>
 
-      {/* Navigation Links */}
       <div className={`${styles.links} ${isMenuOpen ? styles.mobileMenu : ''}`}>
-        <Link href="#about" onClick={toggleMenu}>About</Link>
-        <Link href="#app" onClick={toggleMenu}>App, Meet Web</Link>
-        <Link href="#contact" onClick={toggleMenu}>Write to Us</Link>
+        <NavLink href="/about">About</NavLink>
+        <NavLink href="/app-meet-web">App, Meet Web</NavLink>
+        <NavLink href="/freshness-model">Freshness Check</NavLink>
+        <NavLink href="/ocr-model">OCR Scan</NavLink>
+        <NavLink href="/contact">Write to Us</NavLink>
       </div>
     </nav>
   );

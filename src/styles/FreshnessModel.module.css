@@ -1,0 +1,229 @@
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+  min-height: calc(100vh - 70px);
+  margin-top: 70px;
+  background-color: var(--primary-bg);
+}
+
+.productGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  background: FEFADF;
+ 
+  
+}
+
+.imageSection {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  background-color: #FEFADF;
+  border-radius: 8px;
+  padding: 1rem;
+}
+
+.uploadArea {
+  aspect-ratio: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  border-radius: 8px;
+  background-color: rgba(39, 54, 23, 0.05);
+}
+
+.uploadButtons {
+  display: flex;
+  gap: 1rem;
+  width: 100%;
+}
+
+.detectButton {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  background-color: var(--secondary);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: all 0.2s;
+  height: 35px;
+}
+
+.cameraButton {
+  width: 35px;
+  height: 35px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--secondary);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.quantityControl {
+  display: flex;
+  align-items: center;
+  border: 2px solid var(--secondary);
+  border-radius: 8px;
+  height: 35px;
+  width: 100px;
+}
+
+.quantityControl button {
+  width: 35px;
+  height: 35px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  background: none;
+  color: var(--secondary);
+  cursor: pointer;
+}
+
+.quantityControl span {
+  flex: 1;
+  text-align: center;
+  font-size: 0.9rem;
+  color: var(--secondary);
+}
+
+.previewImage {
+  max-width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+
+.detailsSection {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.status {
+  background-color: #e8f5e9;
+  color: #2e7d32;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  font-weight: 500;
+}
+
+.metricsGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+   
+}
+
+.metricCard {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  background: white;
+}
+
+.metricCard h3 {
+  font-size: 0.875rem;
+  color: #666;
+  margin: 0;
+}
+
+.metricCard p {
+  font-size: 1rem;
+  font-weight: 500;
+  margin: 0.25rem 0 0;
+  color: #333;
+}
+
+.controls {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.addToCartButton {
+  height: 35px;
+  padding: 0 1.5rem;
+  background-color: var(--secondary);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: all 0.2s;
+}
+
+.likeButton {
+  min-width: 35px;
+  height: 35px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid var(--secondary);
+  border-radius: 8px;
+  background: none;
+  cursor: pointer;
+  transition: all 0.2s;
+  color: var(--secondary);
+}
+
+.liked {
+  background-color: var(--secondary);
+}
+
+.liked svg path {
+  fill: white;
+}
+
+.error {
+  color: #d32f2f;
+  padding: 1rem;
+  background: #ffebee;
+  border-radius: 4px;
+  margin-top: 1rem;
+}
+
+.loading {
+  text-align: center;
+  color: #666;
+  padding: 1rem;
+}
+
+@media (max-width: 768px) {
+  .productGrid {
+    grid-template-columns: 1fr;
+  }
+  
+  .metricsGrid {
+    grid-template-columns: 1fr;
+  }
+  
+  .controls {
+    flex-direction: column;
+  }
+  
+  .quantityControl {
+    width: 100%;
+  }
+} 

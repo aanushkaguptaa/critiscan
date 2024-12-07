@@ -1,0 +1,138 @@
+.contactContainer {
+    padding: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    margin-top: 70px;
+  }
+  
+  .contactContainer h1 {
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+  }
+  
+  .subtitle {
+    text-align: center;
+    color: #666;
+    margin-bottom: 3rem;
+  }
+  
+  .contactContent {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 2rem;
+    background: #fff;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+  }
+  
+  .contactInfo {
+    background: #273617;
+    color: white;
+    padding: 3rem 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+  
+  .contactInfo h2 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+  }
+  
+  .infoDetails {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+  
+  .infoItem {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+  
+  .icon {
+    filter: invert(1);
+  }
+  
+  .contactForm {
+    padding: 3rem 2rem;
+  }
+  
+  .formRow {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    margin-bottom: 2rem;
+  }
+  
+  .formGroup {
+    margin-bottom: 2rem;
+  }
+  
+  .formGroup label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+    color: #333;
+  }
+  
+  .formGroup input,
+  .formGroup textarea {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 1rem;
+  }
+  
+  .radioGroup {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+    margin-top: 0.5rem;
+  }
+  
+  .radioLabel {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    cursor: pointer;
+  }
+  
+  .radioLabel input[type="radio"] {
+    width: auto;
+    margin: 0;
+  }
+  
+  .submitButton {
+    background: #273617;
+    color: white;
+    padding: 1rem 2rem;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .submitButton:hover {
+    background: #333;
+  }
+  
+  @media (max-width: 768px) {
+    .contactContent {
+      grid-template-columns: 1fr;
+    }
+  
+    .formRow {
+      grid-template-columns: 1fr;
+      gap: 1rem;
+    }
+  
+    .radioGroup {
+      grid-template-columns: 1fr;
+    }
+  }
