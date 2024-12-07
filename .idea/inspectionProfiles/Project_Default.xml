@@ -1,0 +1,56 @@
+<component name="InspectionProjectProfileManager">
+  <profile version="1.0">
+    <option name="myName" value="Project Default" />
+    <inspection_tool class="HtmlUnknownTag" enabled="true" level="WARNING" enabled_by_default="true">
+      <option name="myValues">
+        <value>
+          <list size="7">
+            <item index="0" class="java.lang.String" itemvalue="nobr" />
+            <item index="1" class="java.lang.String" itemvalue="noembed" />
+            <item index="2" class="java.lang.String" itemvalue="comment" />
+            <item index="3" class="java.lang.String" itemvalue="noscript" />
+            <item index="4" class="java.lang.String" itemvalue="embed" />
+            <item index="5" class="java.lang.String" itemvalue="script" />
+            <item index="6" class="java.lang.String" itemvalue="tdata" />
+          </list>
+        </value>
+      </option>
+      <option name="myCustomValuesEnabled" value="true" />
+    </inspection_tool>
+    <inspection_tool class="JSCheckFunctionSignatures" enabled="false" level="WEAK WARNING" enabled_by_default="false" />
+    <inspection_tool class="PyPackageRequirementsInspection" enabled="true" level="WARNING" enabled_by_default="true">
+      <option name="ignoredPackages">
+        <value>
+          <list size="26">
+            <item index="0" class="java.lang.String" itemvalue="traitlets" />
+            <item index="1" class="java.lang.String" itemvalue="protobuf" />
+            <item index="2" class="java.lang.String" itemvalue="terminado" />
+            <item index="3" class="java.lang.String" itemvalue="wasabi" />
+            <item index="4" class="java.lang.String" itemvalue="typer" />
+            <item index="5" class="java.lang.String" itemvalue="sqlite" />
+            <item index="6" class="java.lang.String" itemvalue="types-pygments" />
+            <item index="7" class="java.lang.String" itemvalue="text-unidecode" />
+            <item index="8" class="java.lang.String" itemvalue="wrapt" />
+            <item index="9" class="java.lang.String" itemvalue="typing-extensions" />
+            <item index="10" class="java.lang.String" itemvalue="srsly" />
+            <item index="11" class="java.lang.String" itemvalue="termcolor" />
+            <item index="12" class="java.lang.String" itemvalue="tables" />
+            <item index="13" class="java.lang.String" itemvalue="widgetsnbextension" />
+            <item index="14" class="java.lang.String" itemvalue="smart-open" />
+            <item index="15" class="java.lang.String" itemvalue="soupsieve" />
+            <item index="16" class="java.lang.String" itemvalue="thinc" />
+            <item index="17" class="java.lang.String" itemvalue="cloudpathlib" />
+            <item index="18" class="java.lang.String" itemvalue="webencodings" />
+            <item index="19" class="java.lang.String" itemvalue="websockets" />
+            <item index="20" class="java.lang.String" itemvalue="transformers" />
+            <item index="21" class="java.lang.String" itemvalue="paddleocr" />
+            <item index="22" class="java.lang.String" itemvalue="flask-cors" />
+            <item index="23" class="java.lang.String" itemvalue="requests" />
+            <item index="24" class="java.lang.String" itemvalue="flask" />
+            <item index="25" class="java.lang.String" itemvalue="azure-core" />
+          </list>
+        </value>
+      </option>
+    </inspection_tool>
+  </profile>
+</component>

@@ -1,0 +1,382 @@
+.container {
+  background-color: #FEFADF;
+  min-height: 100vh;
+  padding-top: 70px;
+  overflow-x: hidden;
+}
+
+.heroSection {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  padding: 4rem;
+  gap: 2rem;
+  align-items: center;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.heroContent {
+  padding-right: 2rem;
+}
+
+.heroContent h1 {
+  font-size: 3rem;
+  line-height: 1.1;
+  margin-bottom: 1.5rem;
+  font-weight: 450;
+}
+
+.heroContent p {
+  font-size: 1.1rem;
+  color: #666;
+  line-height: 1.6;
+}
+
+.heroImage {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  transform: perspective(600px);
+}
+
+.heroImage img {
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  object-fit: contain;
+  z-index: 1;
+}
+
+.heroImage::after {
+  content: '';
+  position: absolute;
+  width: 300px;
+  height: 300px;
+  background: #273617;
+  border-radius: 50%;
+  filter: blur(120px);
+  opacity: 0.2;
+  z-index: 0;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.featuresSection {
+  padding: 4rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  align-items: center;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.featureContent h2 {
+  color: #273617;
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+}
+
+.featureContent h3 {
+  font-size: 3rem;
+  margin-bottom: 3rem;
+}
+
+.featuresList {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.featureItem {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.featureIcon {
+  flex-shrink: 0;
+  width: 32px;
+  height: 32px;
+  background: #273617;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.featureIcon img {
+  filter: invert(1);
+}
+
+.featureContent {
+  flex: 1;
+}
+
+.featureItem h3 {
+  font-size: 1.25rem;
+  margin-bottom: 0.5rem;
+}
+
+.featureItem p {
+  font-size: 0.9rem;
+  color: #666;
+  line-height: 1.5;
+}
+
+.advantagesSection {
+  padding: 4rem;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.advantagesSection h2 {
+  color: #273617;
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+}
+
+.advantagesSection h3 {
+  font-size: 3rem;
+  margin-bottom: 3rem;
+}
+
+.advantagesGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  align-items: center;
+  margin-bottom: 6rem;
+}
+
+.advantagesGrid:last-child {
+  margin-bottom: 0;
+}
+
+.advantagesContent {
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+}
+
+.featureImage {
+  position: relative;
+  display: flex;
+  justify-content: center;
+}
+
+.featureImage img {
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  object-fit: contain;
+  z-index: 1;
+  transform: perspective(600px);
+}
+
+.featureImage::after {
+  content: '';
+  position: absolute;
+  width: 300px;
+  height: 300px;
+  background: #273617;
+  border-radius: 50%;
+  filter: blur(100px);
+  opacity: 0.2;
+  z-index: 0;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.advantagesImage {
+  position: relative;
+  display: flex;
+  justify-content: center;
+}
+
+.advantagesImage img {
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  object-fit: contain;
+  z-index: 1;
+  transform: perspective(600px);
+}
+
+.advantagesImage::after {
+  content: '';
+  position: absolute;
+  width: 300px;
+  height: 300px;
+  background: #273617;
+  border-radius: 50%;
+  filter: blur(100px);
+  opacity: 0.2;
+  z-index: 0;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/* iPhone Frame Styles */
+.iphoneFrame {
+  position: relative;
+  width: 200px;
+  height: 420px;
+  background: #000;
+  border-radius: 35px;
+  padding: 8px;
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+}
+
+.notch {
+  position: absolute;
+  width: 80px;
+  height: 25px;
+  background: #000;
+  top: 15px;
+  left: 50%;
+  transform: translateX(-50%);
+  border-radius: 10px 10px 10px 10px;
+  z-index: 2;
+}
+
+.screen {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background: #fff;
+  border-radius: 30px;
+  overflow: hidden;
+}
+
+/* Hero Phones Layout */
+.heroPhones {
+  position: relative;
+  height: 450px;
+  display: flex;
+  justify-content: center;
+ align-items: center;
+}
+
+.phone1 {
+  position: absolute;
+  transform: translateX(-180px) translateY(20px) rotate(-12deg);
+  z-index: 1;
+}
+
+.phone2 {
+  position: absolute;
+  transform: translateY(-20px);
+  z-index: 3;
+}
+
+.phone3 {
+  position: absolute;   
+  transform: translateX(180px) translateY(20px) rotate(12deg);
+  z-index: 2;
+}
+
+/* Feature Phone */ 
+.featurePhoneWrapper {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.featurePhone {
+  transform: perspective(600px);
+}
+
+/* Advantages Phone */
+.advantagesPhoneWrapper {   
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.advantagesPhone {
+  transform: perspective(600px) 
+}
+
+@media (max-width: 768px) {
+  .heroSection,
+  .featuresSection,
+  .advantagesGrid {
+    grid-template-columns: 1fr;
+    padding: 2rem;
+  }
+
+  .heroContent h1 {
+    font-size: 3rem;
+  }
+
+  .heroImage img,
+  .featureImage img,
+  .advantagesImage img {
+    transform: none;
+    max-width: 80%;
+  }
+
+  .heroContent,
+  .featureContent {
+    text-align: center;
+    padding-right: 0;
+  }
+
+  .featureIcon {
+    margin: 0 auto;
+  }
+
+  .heroPhones {
+    height: 420px;
+    margin: 2rem 0;
+  }
+
+  .iphoneFrame {
+    width: 220px;
+    height: 420px;
+  }
+
+  .phone1 {
+    transform: translateX(-140px) translateY(20px) rotate(-8deg);
+  }
+
+  .phone3 {
+    transform: translateX(140px) translateY(20px) rotate(8deg);
+  }
+}
+
+@media (max-width: 768px) {
+  .heroContent h1 {
+    font-size: 2.5rem;
+  }
+
+  .heroSection,
+  .featuresSection,
+  .advantagesSection {
+    padding: 2rem 1rem;
+  }
+
+  .iphoneFrame {
+    width: 200px;
+    height: 420px;
+  }
+
+  .heroPhones {
+    height: 420px;
+  }
+
+  .phone1, .phone3 {
+    display: none;
+  }
+
+  .phone2 {
+    transform: none;
+  }
+}

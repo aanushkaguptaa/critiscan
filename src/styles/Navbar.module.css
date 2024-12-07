@@ -15,17 +15,44 @@
   .links {
     display: flex;
     gap: 2.5rem;
+    position: relative;
   }
   
-  .links a {
+  .link {
     font-size: 1.1rem;
     transition: color 0.3s ease;
+    position: relative;
+    text-decoration: none;
+    color: inherit;
   }
   
-  .links a:hover {
+  .logoLink {
+    display: block;
+    text-decoration: none;
+  }
+  
+  .link:hover {
     color: var(--secondary);
   }
-  
+
+  .active {
+    font-size: 1.1rem;
+    transition: color 0.3s ease;
+    position: relative;
+    text-decoration: none;
+    color: var(--secondary);
+  }
+
+  .active::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: var(--secondary);
+  }
+
   /* Hamburger Menu */
   .hamburger {
     display: none;
@@ -88,5 +115,9 @@
   
     .links.mobileMenu a {
       font-size: 1.5rem;
+    }
+
+    .links.mobileMenu a.active::after {
+      bottom: -8px;
     }
   }
