@@ -71,7 +71,7 @@ const About = () => {
       github: "https://github.com/aanushkaguptaa",
       linkedin: "https://www.linkedin.com/in/anushka-gupta-here/",
       email: "anushkayol001@gmail.com",
-      resume: "https://drive.google.com/file/d/1EvCtatdNNY1FnjlMTgt1iqPzKw1A6aYa/view?usp=sharing"
+      resume: "https://drive.google.com/file/d/1_4h6Gld5ybDsHh8OdJto2riisojNksCG/view?usp=sharing"
     }
   ];
 
