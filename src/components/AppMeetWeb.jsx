@@ -18,11 +18,8 @@ const IPhoneFrame = ({ screenshot, alt, className }) => (
   </div>
 );
 
-const FeatureItem = ({ icon, title, description }) => (
+const FeatureItem = ({ title, description }) => (
   <div className={styles.featureItem}>
-    <div className={styles.featureIcon}>
-      <Image src={icon} alt={title} width={20} height={20} />
-    </div>
     <div className={styles.featureContent}>
       <h3>{title}</h3>
       <p>{description}</p>
@@ -30,109 +27,118 @@ const FeatureItem = ({ icon, title, description }) => (
   </div>
 );
 
+
+
 const AppMeetWeb = () => {
-  const features = [
+  const featuresSectionData1 = [
     {
-      icon: "/icons/budget.svg",
-      title: "Fruit Classification",
-      description: "Cum Et Convallis Risus Placerat Aliquam, Nunc. Scelerisque Aliquet Faucibus Tincidunt Eu Adipiscing Sociis Arcu Lorem Porttitor."
+      title: "Real-time Shelf Life Estimation:",
+      description: "Get instant estimates on how long your produce will last. Our model analyzes the image and provides a reliable prediction based on factors like ripeness and storage conditions."
     },
     {
-      icon: "/icons/budget.svg",
-      title: "Shelf Life Estimation",
-      description: "Cum Et Convallis Risus Placerat Aliquam, Nunc. Scelerisque Aliquet Faucibus Tincidunt Eu Adipiscing Sociis Arcu Lorem Porttitor."
+      title: "Confidence in Every Prediction:",
+      description: "Our model provides a confidence score for each identification and prediction. This ensures you can trust the results and make informed decisions."
     },
     {
-      icon: "/icons/budget.svg",
-      title: "Accurate Confidence Score",
-      description: "Cum Et Convallis Risus Placerat Aliquam, Nunc. Scelerisque Aliquet Faucibus Tincidunt Eu Adipiscing Sociis Arcu Lorem Porttitor."
+      title: "Easy Quantity Tracking:",
+      description: "Quickly count the number of items in your inventory. Simply upload an image or use your device's camera, and our model will automatically count the fruits and vegetables."
+    }
+  ];
+  const featuresSectionData2 = [
+    {
+      title: "Automatic Item Identification and Counting:",
+      description: "Our model, powered by YOLOv8, can quickly and accurately identify a wide range of objects in real-time, including packaged goods, fruits, and vegetables. It also automatically counts the number of items in each category."
+    },
+    {
+      title: "Detailed Product Information with Qwen2VL:",
+      description: "Going beyond simple detection, our model leverages the capabilities of the Qwen2VL language model to extract detailed product information. This includes product name, brand, quantity, expiry date, and other relevant details for packaged goods. For fresh produce, it can provide insights like freshness and estimated shelf life."
+    },
+    {
+      title: "User-Friendly Interface:",
+      description: "All the information gathered by the model is presented in an easy-to-understand format. The detected items and their associated details, such as quantity and expiration dates, are displayed clearly."
     }
   ];
 
   return (
-    <div className={styles.container}>
-      {/* Hero Section */}
-      <section className={styles.heroSection}>
-        <div className={styles.heroContent}>
-          <h1>Make The Best<br />Financial Decisions</h1>
-          <p>Cum Et Convallis Risus Placerat Aliquam, Nunc. Scelerisque Aliquet Faucibus Tincidunt Eu Adipiscing Sociis Arcu Lorem Porttitor.</p>
-        </div>
-        <div className={styles.heroPhones}>
-          <IPhoneFrame 
-            screenshot="/screenshots/home.png" 
-            alt="Home Screen"
-            className={styles.phone1}
-          />
-          <IPhoneFrame 
-            screenshot="/screenshots/scan.png" 
-            alt="Scan Screen"
-            className={styles.phone2}
-          />
-          <IPhoneFrame 
-            screenshot="/screenshots/details.png" 
-            alt="Details Screen"
-            className={styles.phone3}
-          />
-        </div>
-      </section>
-
-      {/* Features Section */}
-      <section className={styles.featuresSection}>
-        <div className={styles.featureContent}>
-          <h3>Freshness Detection Model</h3>
-          <div className={styles.featuresList}>
-            {features.map((feature, index) => (
-              <FeatureItem key={index} {...feature} />
-            ))}
+      <div className={styles.container}>
+        {/* Hero Section (Unchanged) */}
+        <section className={styles.heroSection}>
+          <div className={styles.heroContent}>
+            <h1>From App to Website <br></br> Your Grocery Assistant, Now Online</h1>
+            <p>The Citri-Scan project retains the same advanced fruit classification and OCR capabilities, now accessible via a web-based interface to provide a more convenient user experience.</p>
           </div>
-        </div>
-        <div className={styles.featurePhoneWrapper}>
-          <IPhoneFrame 
-            screenshot="/screenshots/feature.png" 
-            alt="Feature Screenshot"
-            className={styles.featurePhone}
-          />
-        </div>
-      </section>
-
-      {/* Advantages Section */}
-      <section className={styles.advantagesSection}>
-        <h3>Why Choose Uifry?</h3>
-        <div className={styles.advantagesGrid}>
-          <div className={styles.advantagesContent}>
-            <FeatureItem 
-              icon="/icons/notification.svg"
-              title="Clever Notifications"
-              description="Arcu At Dictum Sapien, Mollis. Vulputate Sit Id Accumsan, Ultricies. In Ultricies Malesuada Elit Mi Mauris Etiam Odio. Duis Tristique Lacus, Et Blandit Viverra Nisi Velit."
-            />
-          </div>
-          <div className={styles.advantagesPhoneWrapper}>
+          <div className={styles.heroPhones}>
             <IPhoneFrame 
-              screenshot="/screenshots/advantages1.png" 
-              alt="Advantages Screenshot 1"
-              className={styles.advantagesPhone}
+              screenshot="/appLoadS1.jpeg" 
+              alt="Home Screen"
+              className={styles.phone1}
             />
-          </div>
-        </div>
-        <div className={styles.advantagesGrid}>
-          <div className={styles.advantagesPhoneWrapper}>
             <IPhoneFrame 
-              screenshot="/screenshots/advantages2.png" 
-              alt="Advantages Screenshot 2"
-              className={styles.advantagesPhone}
+              screenshot="/appHomepage.jpeg" 
+              alt="Scan Screen"
+              className={styles.phone2}
+            />
+            <IPhoneFrame 
+              screenshot="/appLoadS2.jpeg" 
+              alt="Details Screen"
+              className={styles.phone3}
             />
           </div>
-          <div className={styles.advantagesContent}>
-            <FeatureItem 
-              icon="/icons/customize.svg"
-              title="Fully Customizable"
-              description="Arcu At Dictum Sapien, Mollis. Vulputate Sit Id Accumsan, Ultricies. In Ultricies Malesuada Elit Mi Mauris Etiam Odio. Duis Tristique Lacus, Et Blandit Viverra Nisi Velit."
-            />
+        </section>
+  
+        {/* First Features Section (Two Phones on Right) */}
+        <section className={styles.featuresSection}>
+          <div className={styles.featureContent}>
+            <h3>Freshness Detection Model</h3>
+            <div className={styles.featuresList}>
+              {featuresSectionData1.map((feature, index) => (
+                <FeatureItem key={index} {...feature} />
+              ))}
+            </div>
           </div>
-        </div>
-      </section>
-    </div>
-  );
-};
-
-export default AppMeetWeb; 
+          <div className={styles.featurePhoneWrapper}>
+            <div style={{ display: 'flex', gap: '1rem' }}>
+              <IPhoneFrame 
+                screenshot="/appFruit1.jpeg" 
+                alt="Feature Screenshot 1"
+                className={styles.featurePhone}
+              />
+              <IPhoneFrame 
+                screenshot="/appFruit2.jpeg" 
+                alt="Feature Screenshot 2"
+                className={styles.featurePhone}
+              />
+            </div>
+          </div>
+        </section>
+  
+        {/* Second Features Section (Two Phones on Left) */}
+        <section className={styles.featuresSection}>
+          <div className={styles.featurePhoneWrapper}>
+            <div style={{ display: 'flex', gap: '1rem' }}>
+              <IPhoneFrame 
+                screenshot="/appOcr1.jpeg" 
+                alt="Feature Screenshot 3"
+                className={styles.featurePhone}
+              />
+              <IPhoneFrame 
+                screenshot="/appOcr3.jpeg" 
+                alt="Feature Screenshot 4"
+                className={styles.featurePhone}
+              />
+            </div>
+          </div>
+          <div className={styles.featureContent}>
+            <h3>Advanced Detection Capabilities</h3>
+            <div className={styles.featuresList}>
+              {featuresSectionData2.map((feature, index) => (
+                <FeatureItem key={index} {...feature} />
+              ))}
+            </div>
+          </div>
+        </section>
+      </div>
+    );
+  };
+  
+  export default AppMeetWeb;

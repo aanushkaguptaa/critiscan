@@ -23,43 +23,13 @@
   font-size: 3rem;
   line-height: 1.1;
   margin-bottom: 1.5rem;
-  font-weight: 450;
+  font-weight: 500;
 }
 
 .heroContent p {
   font-size: 1.1rem;
   color: #666;
   line-height: 1.6;
-}
-
-.heroImage {
-  position: relative;
-  display: flex;
-  justify-content: center;
-  transform: perspective(600px);
-}
-
-.heroImage img {
-  width: auto;
-  height: auto;
-  max-width: 100%;
-  object-fit: contain;
-  z-index: 1;
-}
-
-.heroImage::after {
-  content: '';
-  position: absolute;
-  width: 300px;
-  height: 300px;
-  background: #273617;
-  border-radius: 50%;
-  filter: blur(120px);
-  opacity: 0.2;
-  z-index: 0;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
 }
 
 .featuresSection {
@@ -70,12 +40,6 @@
   align-items: center;
   max-width: 1400px;
   margin: 0 auto;
-}
-
-.featureContent h2 {
-  color: #273617;
-  font-size: 1.2rem;
-  margin-bottom: 1rem;
 }
 
 .featureContent h3 {
@@ -96,21 +60,6 @@
   margin-bottom: 2rem;
 }
 
-.featureIcon {
-  flex-shrink: 0;
-  width: 32px;
-  height: 32px;
-  background: #273617;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.featureIcon img {
-  filter: invert(1);
-}
-
 .featureContent {
   flex: 1;
 }
@@ -124,101 +73,6 @@
   font-size: 0.9rem;
   color: #666;
   line-height: 1.5;
-}
-
-.advantagesSection {
-  padding: 4rem;
-  max-width: 1400px;
-  margin: 0 auto;
-}
-
-.advantagesSection h2 {
-  color: #273617;
-  font-size: 1.2rem;
-  margin-bottom: 1rem;
-}
-
-.advantagesSection h3 {
-  font-size: 3rem;
-  margin-bottom: 3rem;
-}
-
-.advantagesGrid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 3rem;
-  align-items: center;
-  margin-bottom: 6rem;
-}
-
-.advantagesGrid:last-child {
-  margin-bottom: 0;
-}
-
-.advantagesContent {
-  display: flex;
-  flex-direction: column;
-  gap: 3rem;
-}
-
-.featureImage {
-  position: relative;
-  display: flex;
-  justify-content: center;
-}
-
-.featureImage img {
-  width: auto;
-  height: auto;
-  max-width: 100%;
-  object-fit: contain;
-  z-index: 1;
-  transform: perspective(600px);
-}
-
-.featureImage::after {
-  content: '';
-  position: absolute;
-  width: 300px;
-  height: 300px;
-  background: #273617;
-  border-radius: 50%;
-  filter: blur(100px);
-  opacity: 0.2;
-  z-index: 0;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
-
-.advantagesImage {
-  position: relative;
-  display: flex;
-  justify-content: center;
-}
-
-.advantagesImage img {
-  width: auto;
-  height: auto;
-  max-width: 100%;
-  object-fit: contain;
-  z-index: 1;
-  transform: perspective(600px);
-}
-
-.advantagesImage::after {
-  content: '';
-  position: absolute;
-  width: 300px;
-  height: 300px;
-  background: #273617;
-  border-radius: 50%;
-  filter: blur(100px);
-  opacity: 0.2;
-  z-index: 0;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
 }
 
 /* iPhone Frame Styles */
@@ -259,7 +113,7 @@
   height: 450px;
   display: flex;
   justify-content: center;
- align-items: center;
+  align-items: center;
 }
 
 .phone1 {
@@ -292,91 +146,121 @@
   transform: perspective(600px);
 }
 
-/* Advantages Phone */
-.advantagesPhoneWrapper {   
-  position: relative;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.advantagesPhone {
-  transform: perspective(600px) 
-}
-
+/* Mobile Responsiveness */
 @media (max-width: 768px) {
+  .container {
+    padding-top: 20px;
+  }
+
   .heroSection,
-  .featuresSection,
-  .advantagesGrid {
+  .featuresSection {
     grid-template-columns: 1fr;
-    padding: 2rem;
+    padding: 1rem;
+    gap: 1rem;
   }
 
-  .heroContent h1 {
-    font-size: 3rem;
+  .heroSection {
+    display: flex;
+    flex-direction: column-reverse;
   }
 
-  .heroImage img,
-  .featureImage img,
-  .advantagesImage img {
-    transform: none;
-    max-width: 80%;
-  }
-
-  .heroContent,
-  .featureContent {
-    text-align: center;
+  .heroContent {
     padding-right: 0;
+    text-align: left; /* Changed from center to left */
   }
 
-  .featureIcon {
-    margin: 0 auto;
-  }
-
-  .heroPhones {
-    height: 420px;
-    margin: 2rem 0;
-  }
-
-  .iphoneFrame {
-    width: 220px;
-    height: 420px;
-  }
-
-  .phone1 {
-    transform: translateX(-140px) translateY(20px) rotate(-8deg);
-  }
-
-  .phone3 {
-    transform: translateX(140px) translateY(20px) rotate(8deg);
-  }
-}
-
-@media (max-width: 768px) {
   .heroContent h1 {
-    font-size: 2.5rem;
+    font-size: 2rem;
   }
 
-  .heroSection,
-  .featuresSection,
-  .advantagesSection {
-    padding: 2rem 1rem;
-  }
-
-  .iphoneFrame {
-    width: 200px;
-    height: 420px;
+  .heroContent p {
+    font-size: 1rem;
   }
 
   .heroPhones {
-    height: 420px;
+    height: 300px;
+    margin-bottom: 1rem;
+    display: flex; /* Ensure phones are visible */
+    justify-content: center;
+    align-items: center;
+  }
+
+  .iphoneFrame {
+    width: 150px;
+    height: 300px;
+    margin: 0 0.5rem; /* Added to prevent phones from touching */
   }
 
   .phone1, .phone3 {
-    display: none;
+    position: relative; /* Changed from display: none */
+    transform: rotate(0deg);
+    margin: 0 0.5rem;
   }
 
   .phone2 {
     transform: none;
+  }
+
+  /* Features Sections */
+  .featuresSection {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .featureContent {
+    order: 2;
+    text-align: left; /* Changed from center to left */
+  }
+
+  .featurePhoneWrapper {
+    order: 1;
+    margin-bottom: 1rem;
+    display: flex; /* Ensure phones are visible */
+    justify-content: center;
+  }
+
+  .featurePhoneWrapper > div {
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+  }
+
+  .featureContent h3 {
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .featuresList {
+    gap: 1rem;
+  }
+
+  .featureItem {
+    margin-bottom: 1rem;
+  }
+
+  .featureItem h3 {
+    font-size: 1rem;
+  }
+
+  .featureItem p {
+    font-size: 0.8rem;
+  }
+}
+
+/* Extra Small Screens */
+@media (max-width: 375px) {
+  .iphoneFrame {
+    width: 120px;
+    height: 250px;
+  }
+
+  .heroPhones {
+    height: 250px;
+    flex-wrap: wrap; /* Allow wrapping if needed */
+  }
+
+  .featurePhoneWrapper > div {
+    flex-direction: column;
+    align-items: center;
   }
 }
