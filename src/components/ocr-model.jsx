@@ -7,6 +7,15 @@ import axios from 'axios';
 
 const API_URL = 'http://13.202.99.24:5000';
 
+const cardData = [
+  { title: "1", description: "Upload or capture a clear image of the product packaging." },
+  { title: "2", description: "Our OCR model pre-processes the image for optimal text detection." },
+  { title: "3", description: "Advanced AI extracts and analyzes text information accurately." },
+  { title: "4", description: "Get detailed product attributes like brand, expiry, and MRP." },
+  { title: "5", description: "Review confidence scores for extracted information." },
+  { title: "6", description: "Make informed decisions based on extracted data." },
+];
+
 const OcrModel = () => {
   const [selectedImage, setSelectedImage] = useState(null);
   const [ocrResult, setOcrResult] = useState(null);
@@ -90,116 +99,198 @@ const OcrModel = () => {
   };
 
   return (
-    <div className={styles.container}>
-      <div className={styles.productGrid}>
-        {/* Left side - Image Upload */}
-        <div className={styles.imageSection}>
-          <div className={styles.uploadArea}>
-            {isCameraActive ? (
-              <div className={styles.cameraContainer}>
-                <video
-                  ref={videoRef}
-                  autoPlay
-                  playsInline
-                  className={styles.cameraPreview}
-                />
-                <button 
-                  onClick={captureImage}
-                  className={styles.captureButton}
-                >
-                  Capture Image
-                </button>
-              </div>
-            ) : selectedImage ? (
-              <Image 
-                src={selectedImage}
-                alt="Selected image"
-                width={300}
-                height={300}
-                className={styles.previewImage}
-              />
-            ) : (
-              <Image 
-                src="/object.png"
-                alt="Upload placeholder"
-                width={300}
-                height={300}
-                className={styles.previewImage}
-              />
-            )}
-          </div>
-          
-          <div className={styles.uploadButtons}>
-            <button 
-              className={styles.detectButton}
-              onClick={() => document.getElementById('imageInput').click()}
-              disabled={loading}
-            >
-              <Image src="/upload-white.svg" alt="" width={20} height={20} />
-              {loading ? "Processing..." : "Upload Image"}
-            </button>
-            
-            <button 
-              className={styles.detectButton}
-              onClick={handleCameraCapture}
-              disabled={loading || isCameraActive}
-            >
-              <Image src="/camera-white.svg" alt="Camera" width={20} height={20} />
-              <span>Capture Image</span>
-            </button>
-          </div>
-          
-          <input
-            id="imageInput"
-            type="file"
-            accept="image/*"
-            onChange={handleImageUpload}
-            style={{ display: 'none' }}
-          />
-        </div>
-
-        {/* Right side - OCR Results */}
-        <div className={styles.detailsSection}>
-          <div className={styles.header}>
-            <h1>Product Attribute Extraction</h1>
-            <div className={styles.controls}>
-              <button 
-                className={`${styles.likeButton} ${isLiked ? styles.liked : ''}`}
-                onClick={() => setIsLiked(!isLiked)}
-              >
+    <>
+      <div className={styles.container}>
+        <div className={styles.productGrid}>
+          {/* Left side - Image Upload */}
+          <div className={styles.imageSection}>
+            <div className={styles.uploadArea}>
+              {isCameraActive ? (
+                <div className={styles.cameraContainer}>
+                  <video
+                    ref={videoRef}
+                    autoPlay
+                    playsInline
+                    className={styles.cameraPreview}
+                  />
+                  <button 
+                    onClick={captureImage}
+                    className={styles.captureButton}
+                  >
+                    Capture Image
+                  </button>
+                </div>
+              ) : selectedImage ? (
                 <Image 
-                  src={isLiked ? "/heart-filled.svg" : "/heart.svg"}
-                  alt="Like"
-                  width={20}
-                  height={20}
+                  src={selectedImage}
+                  alt="Selected image"
+                  width={300}
+                  height={300}
+                  className={styles.previewImage}
                 />
+              ) : (
+                <Image 
+                  src="/object.png"
+                  alt="Upload placeholder"
+                  width={300}
+                  height={300}
+                  className={styles.previewImage}
+                />
+              )}
+            </div>
+            
+            <div className={styles.uploadButtons}>
+              <button 
+                className={styles.detectButton}
+                onClick={() => document.getElementById('imageInput').click()}
+                disabled={loading}
+              >
+                <Image src="/upload-white.svg" alt="" width={20} height={20} />
+                {loading ? "Processing..." : "Upload Image"}
+              </button>
+              
+              <button 
+                className={styles.detectButton}
+                onClick={handleCameraCapture}
+                disabled={loading || isCameraActive}
+              >
+                <Image src="/camera-white.svg" alt="Camera" width={20} height={20} />
+                <span>Capture Image</span>
               </button>
             </div>
-            <span className={styles.status}>
-              {loading ? "Processing..." : ocrResult ? "Complete" : "Ready"}
-            </span>
+            
+            <input
+              id="imageInput"
+              type="file"
+              accept="image/*"
+              onChange={handleImageUpload}
+              style={{ display: 'none' }}
+            />
           </div>
 
-          <div className={styles.fruitSection}>
-            <h2 className={styles.fruitHeading}>
-              Detected Text
-            </h2>
-            <p className={styles.description}>
-              {ocrResult ? (
-                <div className={styles.ocrResult}>
-                  {ocrResult.text}
+          {/* Right side - OCR Results */}
+          <div className={styles.detailsSection}>
+            <div className={styles.header}>
+              <h1>Product Attribute Extraction</h1>
+              <div className={styles.controls}>
+                <button 
+                  className={`${styles.likeButton} ${isLiked ? styles.liked : ''}`}
+                  onClick={() => setIsLiked(!isLiked)}
+                >
+                  <Image 
+                    src={isLiked ? "/heart-filled.svg" : "/heart.svg"}
+                    alt="Like"
+                    width={20}
+                    height={20}
+                  />
+                </button>
+              </div>
+              <span className={styles.status}>
+                {loading ? "Processing..." : ocrResult ? "Complete" : "Ready"}
+              </span>
+            </div>
+
+            <div className={styles.fruitSection}>
+              <h2 className={styles.fruitHeading}>
+                Detected Text
+              </h2>
+              <p className={styles.description}>
+                {ocrResult ? (
+                  <div className={styles.ocrResult}>
+                    {ocrResult.text}
+                  </div>
+                ) : (
+                  "Upload/Capture an image containing text to perform OCR analysis. Our OCR model will detect and extract text from the image with high accuracy."
+                )}
+              </p>
+            </div>
+
+            <div className={styles.metricsGrid}>
+              <div className={styles.metricCard}>
+                <Image 
+                  src="/brand.svg" 
+                  alt="Brand" 
+                  width={47} 
+                  height={25}
+                  className={styles.brandIcon} 
+                />
+                <div>
+                  <h3>Brand</h3>
+                  <p>{ocrResult ? ocrResult.brand || 'N/A' : 'N/A'}</p>
                 </div>
-              ) : (
-                "Upload/Capture an image containing text to perform OCR analysis. Our OCR model will detect and extract text from the image with high accuracy."
-              )}
-            </p>
-          </div>
+              </div>
 
-          {error && <div className={styles.error}>{error}</div>}
-          {loading && <div className={styles.loading}>Processing image...</div>}
+              <div className={styles.metricCard}>
+                <Image 
+                  src="/bestbefore.svg" 
+                  alt="Best Before" 
+                  width={47} 
+                  height={25}
+                  className={styles.bestBeforeIcon} 
+                />
+                <div>
+                  <h3>Best Before</h3>
+                  <p>{ocrResult ? ocrResult.best_before || 'N/A' : 'N/A'}</p>
+                </div>
+              </div>
+
+              <div className={styles.metricCard}>
+                <Image 
+                  src="/quantity.svg" 
+                  alt="Weight" 
+                  width={44} 
+                  height={24}
+                  className={styles.weightIcon} 
+                />
+                <div>
+                  <h3>Weight</h3>
+                  <p>{ocrResult ? ocrResult.weight || 'N/A' : 'N/A'}</p>
+                </div>
+              </div>
+
+              <div className={styles.metricCard}>
+                <Image src="/drop.svg" alt="Confidence" width={24} height={24} />
+                <div>
+                  <h3>Confidence</h3>
+                  <p>{ocrResult ? `${Math.round(ocrResult.confidence * 100)}%` || 'N/A' : 'N/A'}</p>
+                </div>
+              </div>
+
+              <div className={styles.metricCard}>
+                <Image src="/calender.svg" alt="Expiry Date" width={24} height={24} />
+                <div>
+                  <h3>Expiry Date</h3>
+                  <p>{ocrResult ? ocrResult.expiry_date || 'N/A' : 'N/A'}</p>
+                </div>
+              </div>
+
+              <div className={styles.metricCard}>
+                <Image src="/price.svg" alt="MRP" width={24} height={24} />
+                <div>
+                  <h3>MRP</h3>
+                  <p>{ocrResult ? ocrResult.mrp || 'N/A' : 'N/A'}</p>
+                </div>
+              </div>
+            </div>
+
+            {error && <div className={styles.error}>{error}</div>}
+            {loading && <div className={styles.loading}>Processing image...</div>}
+          </div>
         </div>
       </div>
-    </div>
+
+      {/* Card Grid Section */}
+      <div className={styles.cardGridSection}>
+        <div className={styles.cardGrid}>
+          {cardData.map((card, index) => (
+            <div key={index} className={styles.card}>
+              <h2>{card.title}</h2>
+              <p>{card.description}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </>
   );
 };
 

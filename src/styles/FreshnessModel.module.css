@@ -281,6 +281,43 @@
   margin-top: 0.5rem;
 }
 
+.cardGridSection {
+  padding: 4rem 2rem;
+  margin-top: 4rem;
+  min-height: 100vh;
+  background-color: var(--primary-bg);
+}
+
+.cardGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 3rem;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.card {
+  background-color: #8FB351;
+  padding: 2rem;
+  border-radius: 12px;
+  color: white;
+  transition: transform 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+}
+
+.card h2 {
+  font-size: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.card p {
+  line-height: 1.6;
+}
+
 @media (max-width: 768px) {
   .productGrid {
     grid-template-columns: 1fr;
@@ -296,5 +333,9 @@
   
   .quantityControl {
     width: 100%;
+  }
+  
+  .cardGrid {
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   }
 } 
