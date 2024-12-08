@@ -52,7 +52,7 @@ const Navbar = () => {
         <NavLink href="/about">About</NavLink>
         <NavLink href="/app-meet-web">App, Meet Web</NavLink>
         <NavLink href="/freshness-model">Freshness Check</NavLink>
-        <NavLink href="/ocr-model">OCR Scan</NavLink>
+        <Link href="/ocr-model">OCR Scan</Link>
         <NavLink href="/contact">Write to Us</NavLink>
       </div>
     </nav>
