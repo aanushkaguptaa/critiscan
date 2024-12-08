@@ -2,26 +2,25 @@
 
 import Image from 'next/image';
 import React, { useState, useRef } from 'react';
-import styles from '../styles/FreshnessModel.module.css';
+import styles from '../styles/OcrModel.module.css'; // We'll reuse most styles
 import axios from 'axios';
 
 const API_URL = 'http://13.202.99.24:5000';
 
 const cardData = [
-  { title: "1", description: "Upload or capture a clear image of the product." },
-  { title: "2", description: "Our model pre-processes the image to enhance quality." },
-  { title: "3", description: "Advanced AI analyzes freshness indicators and product characteristics." },
-  { title: "4", description: "Get detailed insights about shelf life and storage recommendations." },
-  { title: "5", description: "Make informed decisions about product freshness and quality." },
-  { title: "6", description: "Receive personalized storage and handling tips." },
+  { title: "1", description: "Upload or capture a clear image of the product packaging." },
+  { title: "2", description: "Our OCR model pre-processes the image for optimal text detection." },
+  { title: "3", description: "Advanced AI extracts and analyzes text information accurately." },
+  { title: "4", description: "Get detailed product attributes like brand, expiry, and MRP." },
+  { title: "5", description: "Review confidence scores for extracted information." },
+  { title: "6", description: "Make informed decisions based on extracted data." },
 ];
 
-const FreshnessModel = () => {
+const OcrModel = () => {
   const [selectedImage, setSelectedImage] = useState(null);
-  const [detectionResult, setDetectionResult] = useState(null);
+  const [ocrResult, setOcrResult] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
-  const [quantity, setQuantity] = useState(1);
   const [isLiked, setIsLiked] = useState(false);
   const [isCameraActive, setIsCameraActive] = useState(false);
   const videoRef = useRef(null);
@@ -31,11 +30,11 @@ const FreshnessModel = () => {
     const file = e.target.files[0];
     if (file) {
       setSelectedImage(URL.createObjectURL(file));
-      detectFruit(file);
+      performOcr(file);
     }
   };
 
-  const detectFruit = async (file) => {
+  const performOcr = async (file) => {
     setLoading(true);
     setError(null);
     
@@ -43,22 +42,23 @@ const FreshnessModel = () => {
       const formData = new FormData();
       formData.append('image', file);
 
-      const response = await axios.post(`${API_URL}/detect_fruit`, formData, {
+      const response = await axios.post(`${API_URL}/perform_ocr`, formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },
         timeout: 30000,
       });
 
-      setDetectionResult(response.data);
+      setOcrResult(response.data);
     } catch (err) {
-      console.error('Error detecting fruit:', err);
-      setError('An error occurred while detecting the fruit. Please try again.');
+      console.error('Error performing OCR:', err);
+      setError('An error occurred while performing OCR. Please try again.');
     } finally {
       setLoading(false);
     }
   };
 
+  // Camera handling functions (same as freshness model)
   const handleCameraCapture = async () => {
     try {
       const stream = await navigator.mediaDevices.getUserMedia({ video: true });
@@ -85,7 +85,7 @@ const FreshnessModel = () => {
       canvas.toBlob((blob) => {
         const file = new File([blob], 'camera-capture.jpg', { type: 'image/jpeg' });
         setSelectedImage(URL.createObjectURL(file));
-        detectFruit(file);
+        performOcr(file);
         stopCamera();
       }, 'image/jpeg', 0.8);
     }
@@ -123,7 +123,7 @@ const FreshnessModel = () => {
               ) : selectedImage ? (
                 <Image 
                   src={selectedImage}
-                  alt="Selected fruit"
+                  alt="Selected image"
                   width={300}
                   height={300}
                   className={styles.previewImage}
@@ -168,89 +168,118 @@ const FreshnessModel = () => {
             />
           </div>
 
-          {/* Right side - Detection Results */}
+          {/* Right side - OCR Results */}
           <div className={styles.detailsSection}>
             <div className={styles.header}>
-              <h1>Freshness Check</h1>
+              <h1>Product Attribute Extraction</h1>
               <div className={styles.controls}>
-              <button 
-                className={`${styles.likeButton} ${isLiked ? styles.liked : ''}`}
-                onClick={() => setIsLiked(!isLiked)}
-              >
-                <Image 
-                  src={isLiked ? "/heart-filled.svg" : "/heart.svg"}
-                  alt="Like"
-                  width={20}
-                  height={20}
-                />
+                <button 
+                  className={`${styles.likeButton} ${isLiked ? styles.liked : ''}`}
+                  onClick={() => setIsLiked(!isLiked)}
+                >
+                  <Image 
+                    src={isLiked ? "/heart-filled.svg" : "/heart.svg"}
+                    alt="Like"
+                    width={20}
+                    height={20}
+                  />
                 </button>
               </div>
               <span className={styles.status}>
-                {loading ? "Processing..." : detectionResult ? "Complete" : "Ready"}
+                {loading ? "Processing..." : ocrResult ? "Complete" : "Ready"}
               </span>
             </div>
 
             <div className={styles.fruitSection}>
               <h2 className={styles.fruitHeading}>
-                {detectionResult ? detectionResult.fruit_class : "Fruit"}
+                Detected Text
               </h2>
               <p className={styles.description}>
-                {detectionResult ? (
-                  <>
-                    <strong>Confidence:</strong> {(detectionResult.confidence * 100).toFixed(2)}%<br/>
-                    <strong>Shelf Life:</strong> {detectionResult.shelf_life.estimated_days} days<br/>
-                    <strong>Storage Information:</strong><br/>
-                    • Refrigerator: {detectionResult.shelf_life.refrigerator}<br/>
-                    • Freezer: {detectionResult.shelf_life.freezer}<br/>
-                    • Shelf: {detectionResult.shelf_life.shelf}<br/>
-                    <strong>Expiry Date:</strong> {detectionResult.expiry_date}
-                  </>
+                {ocrResult ? (
+                  <div className={styles.ocrResult}>
+                    {ocrResult.text}
+                  </div>
                 ) : (
-                  "Upload/Capture Fresh Produce's image to analyze its freshness. Our Freshness detection model will detect the fruit type and provide detailed information about its shelf life, storage recommendations, and expiry estimates."
+                  "Upload/Capture an image containing text to perform OCR analysis. Our OCR model will detect and extract text from the image with high accuracy."
                 )}
               </p>
             </div>
 
             <div className={styles.metricsGrid}>
               <div className={styles.metricCard}>
+                <Image 
+                  src="/brand.svg" 
+                  alt="Brand" 
+                  width={47} 
+                  height={25}
+                  className={styles.brandIcon} 
+                />
+                <div>
+                  <h3>Brand</h3>
+                  <p>{ocrResult ? ocrResult.brand || 'N/A' : 'N/A'}</p>
+                </div>
+              </div>
+
+              <div className={styles.metricCard}>
+                <Image 
+                  src="/bestbefore.svg" 
+                  alt="Best Before" 
+                  width={47} 
+                  height={25}
+                  className={styles.bestBeforeIcon} 
+                />
+                <div>
+                  <h3>Best Before</h3>
+                  <p>{ocrResult ? ocrResult.best_before || 'N/A' : 'N/A'}</p>
+                </div>
+              </div>
+
+              <div className={styles.metricCard}>
+                <Image 
+                  src="/quantity.svg" 
+                  alt="Weight" 
+                  width={44} 
+                  height={24}
+                  className={styles.weightIcon} 
+                />
+                <div>
+                  <h3>Weight</h3>
+                  <p>{ocrResult ? ocrResult.weight || 'N/A' : 'N/A'}</p>
+                </div>
+              </div>
+
+              <div className={styles.metricCard}>
                 <Image src="/drop.svg" alt="Confidence" width={24} height={24} />
                 <div>
                   <h3>Confidence</h3>
-                  <p>{detectionResult ? `${(detectionResult.confidence * 100).toFixed(2)}%` : "N/A"}</p>
+                  <p>{ocrResult ? `${Math.round(ocrResult.confidence * 100)}%` || 'N/A' : 'N/A'}</p>
                 </div>
               </div>
 
               <div className={styles.metricCard}>
-                <Image src="/calender.svg" alt="Expiry" width={24} height={24} />
+                <Image src="/calender.svg" alt="Expiry Date" width={24} height={24} />
                 <div>
                   <h3>Expiry Date</h3>
-                  <p>{detectionResult ? detectionResult.expiry_date : "N/A"}</p>
+                  <p>{ocrResult ? ocrResult.expiry_date || 'N/A' : 'N/A'}</p>
                 </div>
               </div>
 
               <div className={styles.metricCard}>
-                <Image src="/growth.svg" alt="Shelf Life" width={24} height={24} />
+                <Image src="/price.svg" alt="MRP" width={24} height={24} />
                 <div>
-                  <h3>Shelf Life</h3>
-                  <p>{detectionResult ? `${detectionResult.shelf_life.estimated_days} days` : "N/A"}</p>
-                </div>
-              </div>
-
-              <div className={styles.metricCard}>
-                <Image src="/star.svg" alt="Storage" width={24} height={24} />
-                <div>
-                  <h3>Storage Info</h3>
-                  <p>{detectionResult ? `Refrigerator: ${detectionResult.shelf_life.refrigerator}` : "N/A"}</p>
+                  <h3>MRP</h3>
+                  <p>{ocrResult ? ocrResult.mrp || 'N/A' : 'N/A'}</p>
                 </div>
               </div>
             </div>
+
             {error && <div className={styles.error}>{error}</div>}
-            {loading && <div className={styles.loading}>Analyzing image...</div>}
+            {loading && <div className={styles.loading}>Processing image...</div>}
           </div>
         </div>
       </div>
-      
-      {/* Separated card grid section */}
+
+      {/* Card Grid Section */}
       <div className={styles.cardGridSection}>
         <div className={styles.cardGrid}>
           {cardData.map((card, index) => (
@@ -265,4 +294,4 @@ const FreshnessModel = () => {
   );
 };
 
-export default FreshnessModel;
+export default OcrModel;

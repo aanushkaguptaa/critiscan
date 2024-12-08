@@ -27,18 +27,75 @@
 
 .uploadArea {
   aspect-ratio: 1;
+  max-width: 500px;
+  margin: 0 auto;
   display: flex;
   align-items: center;
   justify-content: center;
-  overflow: hidden;
+  background-color: var(--bg-light);
   border-radius: 8px;
-  background-color: rgba(39, 54, 23, 0.05);
+  overflow: hidden;
 }
 
 .uploadButtons {
   display: flex;
   gap: 1rem;
+  align-items: center;
+  justify-content: center;
+  margin-top: 1rem;
   width: 100%;
+}
+
+.uploadButton {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  background-color: var(--secondary);
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: all 0.2s;
+  height: 35px;
+}
+
+.cameraButton {
+  width: 42px;
+  height: 42px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--secondary);
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.cameraContainer {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.cameraPreview {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.captureButton {
+  position: absolute;
+  bottom: 1rem;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 0.75rem 1.5rem;
+  background-color: var(--secondary);
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
 }
 
 .detectButton {
@@ -47,43 +104,30 @@
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
-  padding: 0.5rem 1rem;
+  padding: 0.75rem 1.5rem;
   background-color: var(--secondary);
   color: white;
   border: none;
-  border-radius: 8px;
+  border-radius: 4px;
   cursor: pointer;
+  flex: 1;
+  max-width: 200px;
   font-size: 0.9rem;
   transition: all 0.2s;
   height: 35px;
 }
 
-.cameraButton {
-  width: 35px;
-  height: 35px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: var(--secondary);
-  color: white;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: all 0.2s;
-}
-
 .quantityControl {
   display: flex;
   align-items: center;
-  border: 2px solid var(--secondary);
-  border-radius: 8px;
-  height: 35px;
-  width: 100px;
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  padding: 0.25rem;
 }
 
-.quantityControl button {
-  width: 35px;
-  height: 35px;
+.quantityButton {
+  width: 32px;
+  height: 32px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -163,15 +207,15 @@
 }
 
 .addToCartButton {
-  height: 35px;
-  padding: 0 1.5rem;
+  flex: 1;
+  padding: 0.75rem 2rem;
   background-color: var(--secondary);
   color: white;
   border: none;
-  border-radius: 8px;
+  border-radius: 4px;
+  font-weight: 500;
   cursor: pointer;
-  font-size: 0.9rem;
-  transition: all 0.2s;
+
 }
 
 .likeButton {
@@ -210,6 +254,70 @@
   padding: 1rem;
 }
 
+.fruitSection {
+  margin: 1rem 0;
+  padding: 1.5rem;
+  background: white;
+  border-radius: 8px;
+  border: 1px solid #e0e0e0;
+}
+
+.fruitHeading {
+  font-size: 1.5rem;
+  color: var(--secondary);
+  margin: 0 0 1rem 0;
+}
+
+.description {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: #4a4a4a;
+  margin: 0;
+}
+
+.description strong {
+  color: #273617;
+  display: inline-block;
+  margin-top: 0.5rem;
+}
+
+.cardGridSection {
+  padding: 4rem 2rem;
+  margin-top: 4rem;
+  min-height: 100vh;
+  background-color: var(--primary-bg);
+}
+
+.cardGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 3rem;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.card {
+  background-color: #8FB351;
+  padding: 2rem;
+  border-radius: 12px;
+  color: white;
+  transition: transform 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+}
+
+.card h2 {
+  font-size: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.card p {
+  line-height: 1.6;
+}
+
 @media (max-width: 768px) {
   .productGrid {
     grid-template-columns: 1fr;
@@ -225,5 +333,9 @@
   
   .quantityControl {
     width: 100%;
+  }
+  
+  .cardGrid {
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   }
 } 

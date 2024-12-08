@@ -1,123 +1,123 @@
 .navbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0.8rem 4rem;
-    position: fixed;
-    width: 100%;
-    top: 0;
-    z-index: 1000;
-    background: rgba(254, 250, 223, 0.8);
-    backdrop-filter: blur(8px);
-    height: 70px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.8rem 4rem;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  z-index: 1000;
+  background: rgba(254, 250, 223, 0.8);
+  backdrop-filter: blur(8px);
+  height: 70px;
+}
+
+.links {
+  display: flex;
+  gap: 2.5rem;
+  position: relative;
+}
+
+.link {
+  font-size: 1.1rem;
+  transition: color 0.3s ease;
+  position: relative;
+  text-decoration: none;
+  color: inherit;
+}
+
+.logoLink {
+  display: block;
+  text-decoration: none;
+}
+
+.link:hover {
+  color: var(--secondary);
+}
+
+.active {
+  font-size: 1.1rem;
+  transition: color 0.3s ease;
+  position: relative;
+  text-decoration: none;
+  color: var(--secondary);
+}
+
+.active::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background-color: var(--secondary);
+}
+
+/* Hamburger Menu */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  cursor: pointer;
+  width: 30px;
+  height: 20px;
+  justify-content: space-between;
+}
+
+.hamburger span {
+  width: 100%;
+  height: 3px;
+  background-color: black;
+  transition: all 0.3s ease;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+  .navbar {
+    padding: 1rem 2rem;
+    position: relative;
   }
-  
+
+  .hamburger {
+    display: flex;
+    z-index: 1001;
+  }
+
+  /* Hamburger animation when menu is open */
+  .hamburger.open span:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px);
+  }
+
+  .hamburger.open span:nth-child(2) {
+    opacity: 0;
+  }
+
+  .hamburger.open span:nth-child(3) {
+    transform: rotate(-45deg) translate(5px, -5px);
+  }
+
   .links {
+    display: none;
+  }
+
+  .links.mobileMenu {
     display: flex;
-    gap: 2.5rem;
-    position: relative;
-  }
-  
-  .link {
-    font-size: 1.1rem;
-    transition: color 0.3s ease;
-    position: relative;
-    text-decoration: none;
-    color: inherit;
-  }
-  
-  .logoLink {
-    display: block;
-    text-decoration: none;
-  }
-  
-  .link:hover {
-    color: var(--secondary);
-  }
-
-  .active {
-    font-size: 1.1rem;
-    transition: color 0.3s ease;
-    position: relative;
-    text-decoration: none;
-    color: var(--secondary);
-  }
-
-  .active::after {
-    content: '';
+    flex-direction: column;
     position: absolute;
-    bottom: -4px;
+    top: 0;
     left: 0;
     width: 100%;
-    height: 2px;
-    background-color: var(--secondary);
+    background: rgba(254, 250, 223, 0.9);
+    padding: 100px 0 20px;
+    align-items: center;
+    gap: 2rem;
+    height: 100vh;
   }
 
-  /* Hamburger Menu */
-  .hamburger {
-    display: none;
-    flex-direction: column;
-    cursor: pointer;
-    width: 30px;
-    height: 20px;
-    justify-content: space-between;
+  .links.mobileMenu a {
+    font-size: 1.5rem;
   }
-  
-  .hamburger span {
-    width: 100%;
-    height: 3px;
-    background-color: black;
-    transition: all 0.3s ease;
-  }
-  
-  /* Mobile Responsiveness */
-  @media (max-width: 768px) {
-    .navbar {
-      padding: 1rem 2rem;
-      position: relative;
-    }
-  
-    .hamburger {
-      display: flex;
-      z-index: 1001;
-    }
-  
-    /* Hamburger animation when menu is open */
-    .hamburger.open span:nth-child(1) {
-      transform: rotate(45deg) translate(5px, 5px);
-    }
-  
-    .hamburger.open span:nth-child(2) {
-      opacity: 0;
-    }
-  
-    .hamburger.open span:nth-child(3) {
-      transform: rotate(-45deg) translate(5px, -5px);
-    }
-  
-    .links {
-      display: none;
-    }
-  
-    .links.mobileMenu {
-      display: flex;
-      flex-direction: column;
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      background: rgba(254, 250, 223, 0.9);
-      padding: 100px 0 20px;
-      align-items: center;
-      gap: 2rem;
-      height: 100vh;
-    }
-  
-    .links.mobileMenu a {
-      font-size: 1.5rem;
-    }
 
-    .links.mobileMenu a.active::after {
-      bottom: -8px;
-    }
+  .links.mobileMenu a.active::after {
+    bottom: -8px;
   }
+}

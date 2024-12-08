@@ -1,0 +1,376 @@
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+    min-height: calc(100vh - 70px);
+    margin-top: 70px;
+    background-color: var(--primary-bg);
+  }
+  
+  .productGrid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    background: FEFADF;
+  }
+  
+  .imageSection {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    background-color: #FEFADF;
+    border-radius: 8px;
+    padding: 1rem;
+  }
+  
+  .uploadArea {
+    aspect-ratio: 1;
+    max-width: 500px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--bg-light);
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  
+  .uploadButtons {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    justify-content: center;
+    margin-top: 1rem;
+    width: 100%;
+  }
+  
+  .uploadButton {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    background-color: var(--secondary);
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: all 0.2s;
+    height: 35px;
+  }
+  
+  .cameraButton {
+    width: 42px;
+    height: 42px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--secondary);
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .cameraContainer {
+    position: relative;
+    width: 100%;
+    height: 100%;
+  }
+  
+  .cameraPreview {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  .captureButton {
+    position: absolute;
+    bottom: 1rem;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 0.75rem 1.5rem;
+    background-color: var(--secondary);
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .detectButton {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    background-color: var(--secondary);
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    flex: 1;
+    max-width: 200px;
+    font-size: 0.9rem;
+    transition: all 0.2s;
+    height: 35px;
+  }
+  
+  .quantityControl {
+    display: flex;
+    align-items: center;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    padding: 0.25rem;
+  }
+  
+  .quantityButton {
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    background: none;
+    color: var(--secondary);
+    cursor: pointer;
+  }
+  
+  .quantityControl span {
+    flex: 1;
+    text-align: center;
+    font-size: 0.9rem;
+    color: var(--secondary);
+  }
+  
+  .previewImage {
+    max-width: 100%;
+    height: auto;
+    object-fit: contain;
+  }
+  
+  .detailsSection {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+  
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .status {
+    background-color: #e8f5e9;
+    color: #2e7d32;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    font-weight: 500;
+  }
+  
+  .metricsGrid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+    margin-top: 1rem;
+  }
+  
+  .metricCard {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1.5rem;
+    background: white;
+    border-radius: 8px;
+    border: 1px solid #e0e0e0;
+    height: 80px;
+  }
+  
+  .metricCard div {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+  
+  .metricCard h3 {
+    font-size: 1rem;
+    color: #4a4a4a;
+    margin: 0;
+  }
+  
+  .metricCard p {
+    font-size: 0.9rem;
+    color: var(--secondary);
+    margin: 0;
+    font-weight: 500;
+  }
+  
+  .controls {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+  
+  .addToCartButton {
+    flex: 1;
+    padding: 0.75rem 2rem;
+    background-color: var(--secondary);
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-weight: 500;
+    cursor: pointer;
+  
+  }
+  
+  .likeButton {
+    min-width: 35px;
+    height: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid var(--secondary);
+    border-radius: 8px;
+    background: none;
+    cursor: pointer;
+    transition: all 0.2s;
+    color: var(--secondary);
+  }
+  
+  .liked {
+    background-color: var(--secondary);
+  }
+  
+  .liked svg path {
+    fill: white;
+  }
+  
+  .error {
+    color: #d32f2f;
+    padding: 1rem;
+    background: #ffebee;
+    border-radius: 4px;
+    margin-top: 1rem;
+  }
+  
+  .loading {
+    text-align: center;
+    color: #666;
+    padding: 1rem;
+  }
+  
+  .fruitSection {
+    margin: 1rem 0;
+    padding: 1.5rem;
+    background: white;
+    border-radius: 8px;
+    border: 1px solid #e0e0e0;
+  }
+  
+  .fruitHeading {
+    font-size: 1.5rem;
+    color: var(--secondary);
+    margin: 0 0 1rem 0;
+  }
+  
+  .description {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: #4a4a4a;
+    margin: 0;
+  }
+  
+  .description strong {
+    color: #273617;
+    display: inline-block;
+    margin-top: 0.5rem;
+  }
+  
+  @media (max-width: 768px) {
+    .productGrid {
+      grid-template-columns: 1fr;
+    }
+    
+    .metricsGrid {
+      grid-template-columns: 1fr;
+    }
+    
+    .controls {
+      flex-direction: column;
+    }
+    
+    .quantityControl {
+      width: 100%;
+    }
+  } 
+
+.ocrResult {
+  white-space: pre-wrap;
+  background: #f5f5f5;
+  padding: 1rem;
+  border-radius: 4px;
+  font-family: monospace;
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+/* Add any OCR-specific styles here */
+
+/* Custom sizes for specific metric card images */
+.brandIcon {
+  width: 47px !important;
+  height: 25px !important;
+}
+
+.bestBeforeIcon {
+  width: 47px !important;
+  height: 25px !important;
+}
+
+.weightIcon {
+  width: 44px !important;
+  height: 24px !important;
+}
+
+.cardGridSection {
+  padding: 4rem 2rem;
+  margin-top: 4rem;
+  min-height: 100vh;
+  background-color: var(--primary-bg);
+}
+
+.cardGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 3rem;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.card {
+  background-color: #8FB351;
+  padding: 2rem;
+  border-radius: 12px;
+  color: white;
+  transition: transform 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+}
+
+.card h2 {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.card p {
+  line-height: 1.6;
+}
+
+@media (max-width: 768px) {
+  .cardGrid {
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  }
+}
