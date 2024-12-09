@@ -2,15 +2,15 @@ import React from 'react';
 import styles from '../styles/Section2.module.css';
 
 const cardData = [
-  { title: "1", description: "Choose to use a live camera feed or upload a photo. " },
-  { title: "2", description: "The image is pre-processed to optimize quality." },
-  { title: "3", description: "Our model analyzes the image: for fruits, it evaluates freshness and quality and for products, it identifies and categorizes items accurately." },
-  { title: "4", description: "Receive your results promptly and with precise details." },
-  { title: "5", description: "Receive your results promptly and with precise details." },
-  { title: "6", description: "Receive your results promptly and with precise details." },
-  { title: "7", description: "Receive your results promptly and with precise details." },
-  { title: "8", description: "Receive your results promptly and with precise details." },
-  { title: "9", description: "Receive your results promptly and with precise details." },
+  { title: "Instant Freshness Detection", description: "Quickly assess the freshness of fruits and vegetables using our advanced image recognition technology." },
+  { title: "Product Identification", description: "Identify packaged goods with high accuracy, including brand names, quantities, and expiry dates." },
+  { title: "Live Feed Functionality", description: "Utilize your device's camera for real-time freshness checks and product scans." },
+  { title: "Image Upload Option", description: "Upload images directly from your device for analysis and identification." },
+  { title: "Detailed Results Display", description: "View organized results that include freshness estimates, product details, and confidence scores for each prediction." },
+  { title: "User-Friendly Interface", description: "Enjoy a seamless experience with an intuitive layout that makes navigation simple and efficient." },
+  { title: "Confidence Scores", description: "Each prediction comes with a confidence score, ensuring you can trust the results provided by our models." },
+  { title: "Quantity Tracking", description: "Easily count the number of items in your inventory by uploading images or using the live camera feed." },
+  { title: "Fully Responsive", description: "The application is fully responsive and works on all devices, including mobile phones, tablets, and desktops." }
 ];
 
 

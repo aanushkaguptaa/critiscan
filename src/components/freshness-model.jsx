@@ -8,12 +8,12 @@ import axios from 'axios';
 const API_URL = 'http://13.202.99.24:5000';
 
 const cardData = [
-  { title: "1", description: "Upload or capture a clear image of the product." },
-  { title: "2", description: "Our model pre-processes the image to enhance quality." },
-  { title: "3", description: "Advanced AI analyzes freshness indicators and product characteristics." },
-  { title: "4", description: "Get detailed insights about shelf life and storage recommendations." },
-  { title: "5", description: "Make informed decisions about product freshness and quality." },
-  { title: "6", description: "Receive personalized storage and handling tips." },
+  { title: "EfficientNetB5 Model Integration", description: "Our model leverages the powerful EfficientNetB5 architecture, fine-tuned with custom top layers, to achieve high accuracy in image analysis and prediction." },
+  { title: "Real-Time Shelf Life Estimation", description: "The model analyzes uploaded images to provide instant estimates on how long your produce will last based on factors like ripeness and storage conditions." },
+  { title: "Confidence Score Display", description: "Alongside the shelf life estimate, we provide a confidence score indicating the reliability of the prediction, empowering users to make informed decisions." },
+  { title: "Automatic Item Identification", description: "he system can identify various fruits and vegetables automatically, allowing for quick assessments without manual input." },
+  { title: "Detailed Freshness Insights", description: "Gain insights into the freshness of your produce, including how to store it properly to extend its shelf life." },
+  { title: "Storage Condition Recommendations", description: "To optimize freshness, our system offers tailored storage recommendations based on the item's current state, ensuring that produce stays fresh for longer." },
 ];
 
 const FreshnessModel = () => {

@@ -67,7 +67,7 @@ const About = () => {
         title: "AI/ML Engineer"
       },
       description: "I'm Anushka Gupta, a final-year B.Tech student.",
-      skills: ["Python", "AI/ML", "DL", "AWS"],
+      skills: ["NextJS", "React", "Python", "Machine Learning", "AWS"],
       github: "https://github.com/aanushkaguptaa",
       linkedin: "https://www.linkedin.com/in/anushka-gupta-here/",
       email: "anushkayol001@gmail.com",

@@ -8,12 +8,12 @@ import axios from 'axios';
 const API_URL = 'http://13.202.99.24:5000';
 
 const cardData = [
-  { title: "1", description: "Upload or capture a clear image of the product packaging." },
-  { title: "2", description: "Our OCR model pre-processes the image for optimal text detection." },
-  { title: "3", description: "Advanced AI extracts and analyzes text information accurately." },
-  { title: "4", description: "Get detailed product attributes like brand, expiry, and MRP." },
-  { title: "5", description: "Review confidence scores for extracted information." },
-  { title: "6", description: "Make informed decisions based on extracted data." },
+  { title: "Powerful OCR Technology", description: "Leverages the Qwen2 model to accurately extract textual information from product labels, including names, categories, quantities, and expiry dates." },
+  { title: "Comprehensive Data Extraction", description: "Capable of analyzing packaged goods, providing detailed insights." },
+  { title: "Real-Time Processing Capability", description: "Users can scan products using their device's camera or upload images for immediate analysis, ensuring quick access to information." },
+  { title: "Structured Output Format", description: "Results are organized into a structured format that includes all relevant product details, making it easy to read and understand." },
+  { title: "Detection of Products", description: "Detects the product name, brand, quantity, expiry date, and MRP from the image along with the frequency of the product in the image." },
+  { title: "Regular Expression Patterns for Accuracy", description: "Utilizes regex patterns to identify and extract specific information from text output, ensuring high precision in data retrieval." },
 ];
 
 const OcrModel = () => {
