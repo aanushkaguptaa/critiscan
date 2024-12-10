@@ -1,0 +1,6 @@
+Sl.no,Timestamp,Produce,Freshness,Expected life span (Days)
+1,2024-12-10T20:45:00+05:30,Banana_Bad,75.23%,1
+2,2024-12-10T20:46:00+05:30,Apple_Good,94.12%,3
+3,2024-12-10T20:47:00+05:30,Pomegranate_Good,74.39%,3
+4,2024-12-10T20:48:00+05:30,Orange_Good,23.02%,3
+5,2024-12-10T20:49:00+05:30,Guava_mixed,77.18%,1
