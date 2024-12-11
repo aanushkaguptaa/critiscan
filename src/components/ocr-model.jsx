@@ -4,8 +4,9 @@ import Image from 'next/image';
 import React, { useState, useRef } from 'react';
 import styles from '../styles/OcrModel.module.css'; // We'll reuse most styles
 import axios from 'axios';
+import Webcam from 'react-webcam';
 
-const API_URL = 'http://13.202.99.24:5000';
+const API_URL = 'http://13.203.99.136/';
 
 const cardData = [
   { title: "Powerful OCR Technology", description: "Leverages the Qwen2 model to accurately extract textual information from product labels, including names, categories, quantities, and expiry dates." },
@@ -16,15 +17,92 @@ const cardData = [
   { title: "Regular Expression Patterns for Accuracy", description: "Utilizes regex patterns to identify and extract specific information from text output, ensuring high precision in data retrieval." },
 ];
 
+const CameraComponent = ({ onCapture, onClose }) => {
+  const webcamRef = useRef(null);
+  const [capturing, setCapturing] = useState(false);
+  const [facingMode, setFacingMode] = useState("user");
+
+  const videoConstraints = {
+    width: { min: 640, ideal: 1920, max: 1920 },
+    height: { min: 480, ideal: 1080, max: 1080 },
+    facingMode: facingMode
+  };
+
+  const toggleCamera = () => {
+    setFacingMode(prevMode => 
+      prevMode === "user" ? "environment" : "user"
+    );
+  };
+
+  const handleCapture = React.useCallback(() => {
+    const imageSrc = webcamRef.current?.getScreenshot();
+    if (imageSrc) {
+      onCapture(imageSrc);
+      setCapturing(false);
+    }
+  }, [webcamRef, onCapture]);
+
+  return (
+    <div className={styles.cameraModal}>
+      <div className={styles.cameraContainer}>
+        <Webcam
+          audio={false}
+          ref={webcamRef}
+          screenshotFormat="image/jpeg"
+          videoConstraints={videoConstraints}
+          mirrored={facingMode === "user"}
+        />
+        
+        <div className={styles.cameraControls}>
+          {!capturing ? (
+            <>
+              <button onClick={() => setCapturing(true)} className={styles.startButton}>
+                Start Capture
+              </button>
+              <button onClick={toggleCamera} className={styles.startButton}>
+                Switch Camera
+              </button>
+            </>
+          ) : (
+            <>
+              <button onClick={handleCapture} className={styles.captureButton}>
+                Capture
+              </button>
+              <button onClick={() => setCapturing(false)} className={styles.stopButton}>
+                Cancel
+              </button>
+            </>
+          )}
+          <button onClick={onClose} className={styles.closeButton}>
+            ✕
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+};
+
 const OcrModel = () => {
   const [selectedImage, setSelectedImage] = useState(null);
   const [ocrResult, setOcrResult] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [isLiked, setIsLiked] = useState(false);
-  const [isCameraActive, setIsCameraActive] = useState(false);
-  const videoRef = useRef(null);
-  const streamRef = useRef(null);
+  const [showCamera, setShowCamera] = useState(false);
+
+  const base64ToFile = (base64String, filename) => {
+    const arr = base64String.split(',');
+    const mime = arr[0].match(/:(.*?);/)[1];
+    const bstr = atob(arr[1]);
+    let n = bstr.length;
+    const u8arr = new Uint8Array(n);
+    
+    while (n--) {
+      u8arr[n] = bstr.charCodeAt(n);
+    }
+    
+    return new File([u8arr], filename, { type: mime });
+  };
 
   const handleImageUpload = async (e) => {
     const file = e.target.files[0];
@@ -32,6 +110,13 @@ const OcrModel = () => {
       setSelectedImage(URL.createObjectURL(file));
       performOcr(file);
     }
+  };
+
+  const handleCameraCapture = (image) => {
+    setSelectedImage(image);
+    const capturedFile = base64ToFile(image, 'captured-image.jpg');
+    performOcr(capturedFile);
+    setShowCamera(false);
   };
 
   const performOcr = async (file) => {
@@ -58,69 +143,20 @@ const OcrModel = () => {
     }
   };
 
-  // Camera handling functions (same as freshness model)
-  const handleCameraCapture = async () => {
-    try {
-      const stream = await navigator.mediaDevices.getUserMedia({ video: true });
-      streamRef.current = stream;
-      if (videoRef.current) {
-        videoRef.current.srcObject = stream;
-        videoRef.current.play();
-        setIsCameraActive(true);
-      }
-    } catch (err) {
-      console.error('Error accessing camera:', err);
-      setError('Could not access camera. Please check permissions.');
-    }
-  };
-
-  const captureImage = () => {
-    if (videoRef.current) {
-      const canvas = document.createElement('canvas');
-      canvas.width = videoRef.current.videoWidth;
-      canvas.height = videoRef.current.videoHeight;
-      const ctx = canvas.getContext('2d');
-      ctx.drawImage(videoRef.current, 0, 0);
-      
-      canvas.toBlob((blob) => {
-        const file = new File([blob], 'camera-capture.jpg', { type: 'image/jpeg' });
-        setSelectedImage(URL.createObjectURL(file));
-        performOcr(file);
-        stopCamera();
-      }, 'image/jpeg', 0.8);
-    }
-  };
-
-  const stopCamera = () => {
-    if (streamRef.current) {
-      streamRef.current.getTracks().forEach(track => track.stop());
-      setIsCameraActive(false);
-    }
-  };
-
   return (
     <>
       <div className={styles.container}>
+        {showCamera && (
+          <CameraComponent
+            onCapture={handleCameraCapture}
+            onClose={() => setShowCamera(false)}
+          />
+        )}
+        
         <div className={styles.productGrid}>
-          {/* Left side - Image Upload */}
           <div className={styles.imageSection}>
             <div className={styles.uploadArea}>
-              {isCameraActive ? (
-                <div className={styles.cameraContainer}>
-                  <video
-                    ref={videoRef}
-                    autoPlay
-                    playsInline
-                    className={styles.cameraPreview}
-                  />
-                  <button 
-                    onClick={captureImage}
-                    className={styles.captureButton}
-                  >
-                    Capture Image
-                  </button>
-                </div>
-              ) : selectedImage ? (
+              {selectedImage ? (
                 <Image 
                   src={selectedImage}
                   alt="Selected image"
@@ -151,11 +187,11 @@ const OcrModel = () => {
               
               <button 
                 className={styles.detectButton}
-                onClick={handleCameraCapture}
-                disabled={loading || isCameraActive}
+                onClick={() => setShowCamera(true)}
+                disabled={loading}
               >
                 <Image src="/camera-white.svg" alt="Camera" width={20} height={20} />
-                <span>Capture Image</span>
+                <span>Open Camera</span>
               </button>
             </div>
             
@@ -168,7 +204,6 @@ const OcrModel = () => {
             />
           </div>
 
-          {/* Right side - OCR Results */}
           <div className={styles.detailsSection}>
             <div className={styles.header}>
               <h1>Product Attribute Extraction</h1>
@@ -279,7 +314,6 @@ const OcrModel = () => {
         </div>
       </div>
 
-      {/* Card Grid Section */}
       <div className={styles.cardGridSection}>
         <div className={styles.cardGrid}>
           {cardData.map((card, index) => (

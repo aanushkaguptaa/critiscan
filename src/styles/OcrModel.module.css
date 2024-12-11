@@ -374,3 +374,86 @@
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   }
 }
+
+.cameraModal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.cameraContainer {
+  background: white;
+  padding: 2rem;
+  border-radius: 12px;
+  width: 90%;
+  max-width: 600px;
+  max-height: 90vh;
+  position: relative;
+  overflow: hidden;
+}
+
+.cameraContainer video {
+  width: 100%;
+  height: auto;
+  max-height: calc(90vh - 150px);
+  object-fit: contain;
+  border-radius: 8px;
+}
+
+.cameraControls {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  padding: 1rem 0 0 0;
+  margin-top: 1rem;
+  border-top: 1px solid #eee;
+}
+
+.startButton,
+.captureButton,
+.stopButton,
+.closeButton {
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 0.2s;
+}
+
+.startButton {
+  background: var(--secondary);
+  color: white;
+}
+
+.captureButton {
+  background: #4CAF50;
+  color: white;
+}
+
+.stopButton {
+  background: #f44336;
+  color: white;
+}
+
+.closeButton {
+  background: #9e9e9e;
+  color: white;
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+}
+
+.capturedImagePreview {
+  position: relative;
+  width: 100%;
+  height: 300px;
+  margin-top: 1rem;
+}
