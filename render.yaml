@@ -1,0 +1,13 @@
+services:
+  - type: web
+    name: citrus-scan
+    buildCommand: npm run build
+    staticPublishPath: ./out
+    headers:
+      - path: /*
+        name: Cache-Control
+        value: no-cache
+    routes:
+      - type: rewrite
+        source: /*
+        destination: /index.html

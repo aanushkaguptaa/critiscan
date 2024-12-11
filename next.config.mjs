@@ -5,15 +5,6 @@ const nextConfig = {
     unoptimized: true,
   },
   trailingSlash: true,
-  assetPrefix: '/',
-  async rewrites() {
-    return [
-      {
-        source: '/',
-        destination: '/index',
-      }
-    ];
-  }
 };
 
 export default nextConfig;
