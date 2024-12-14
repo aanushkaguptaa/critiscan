@@ -281,43 +281,6 @@
   margin-top: 0.5rem;
 }
 
-.cardGridSection {
-  padding: 4rem 2rem;
-  margin-top: 4rem;
-  min-height: 100vh;
-  background-color: var(--primary-bg);
-}
-
-.cardGrid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 3rem;
-  max-width: 1400px;
-  margin: 0 auto;
-  padding: 2rem;
-}
-
-.card {
-  background-color: #8FB351;
-  padding: 2rem;
-  border-radius: 12px;
-  color: white;
-  transition: transform 0.3s ease;
-}
-
-.card:hover {
-  transform: translateY(-5px);
-}
-
-.card h2 {
-  font-size: 1.5rem;
-  margin-bottom: 1.5rem;
-}
-
-.card p {
-  line-height: 1.6;
-}
-
 @media (max-width: 768px) {
   .productGrid {
     grid-template-columns: 1fr;
@@ -422,3 +385,83 @@
   height: 300px;
   margin-top: 1rem;
 } 
+
+/* History Section */
+.historyContainer {
+  padding: 2rem; /* Padding around the section */
+  display: flex;
+  flex-direction: column; /* Stack heading and table vertically */
+  justify-content: flex-start; /* Start content from the top */
+  align-items: left; /* Horizontally center the table */
+  height: 100vh; /* Full viewport height for the section */
+}
+
+/* History Heading */
+.historyHeading {
+  font-size: 2rem;
+  color: #273617; /* Darker color for better readability */
+  margin-bottom: 1rem; /* Smaller space between heading and table */
+  align-self: flex-start; /* Align heading to the top-left corner */
+  padding-left: 1rem; /* Add a bit of padding for a consistent left alignment */
+}
+
+/* Table Container */
+.tableContainer {
+  display: flex;
+  justify-content: left; /* Center table horizontally */
+  width: 100%; /* Full width container */
+  max-width: 1200px; /* Ensure the table doesn’t stretch too wide */
+  padding: 1rem; /* Padding around the table */
+  overflow-x: auto; /* Allow horizontal scrolling for smaller screens */
+  overflow-y: auto;
+  max-height: 60vh;
+}
+
+/* Table */
+.table {
+  width: 100%; /* Keep table width manageable */
+  border-collapse: collapse; /* Remove gaps between cells */
+  background-color: #ffffff; /* White background for contrast */
+  border-radius: 8px; /* Rounded corners */
+  overflow: hidden; /* Prevent content overflow on rounded corners */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+}
+
+/* Table header styles */
+.table th {
+  background-color: #8FB351; /* Green header background */
+  color: white; /* White text color */
+  padding: 1rem; /* Add padding for spacing */
+  text-align: left; /* Align header text to the left */
+  font-weight: bold;
+  position: sticky;
+  z-index: 2;
+}
+
+/* Table cell styles */
+.table td {
+  padding: 1rem; /* Add spacing between cells */
+  text-align: left; /* Align text to the left */
+  border-bottom: 1px solid #ddd; /* Subtle divider line between rows */
+}
+
+/* Spacing between columns */
+.table td, .table th {
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+}
+
+/* Add background color to alternate rows for readability */
+.table tr:nth-child(even) {
+  background-color: #f7f7f7; /* Light gray for alternate rows */
+}
+
+/* Highlight row on hover */
+.table tr:hover {
+  background-color: #e8f5e9; /* Light green on hover */
+}
+
+/* Ensure the last row doesn't have a bottom border */
+.table tr:last-child td {
+  border-bottom: none;
+}

@@ -8,15 +8,6 @@ import Webcam from 'react-webcam';
 
 const API_URL = 'http://13.203.99.136/';
 
-const cardData = [
-  { title: "EfficientNetB5 Model Integration", description: "Our model leverages the powerful EfficientNetB5 architecture, fine-tuned with custom top layers, to achieve high accuracy in image analysis and prediction." },
-  { title: "Real-Time Shelf Life Estimation", description: "The model analyzes uploaded images to provide instant estimates on how long your produce will last based on factors like ripeness and storage conditions." },
-  { title: "Confidence Score Display", description: "Alongside the shelf life estimate, we provide a confidence score indicating the reliability of the prediction, empowering users to make informed decisions." },
-  { title: "Automatic Item Identification", description: "The system can identify various fruits and vegetables automatically, allowing for quick assessments without manual input." },
-  { title: "Detailed Freshness Insights", description: "Gain insights into the freshness of your produce, including how to store it properly to extend its shelf life." },
-  { title: "Storage Condition Recommendations", description: "To optimize freshness, our system offers tailored storage recommendations based on the item's current state, ensuring that produce stays fresh for longer." },
-];
-
 const CameraComponent = ({ onCapture, onClose }) => {
   const webcamRef = useRef(null);
   const [capturing, setCapturing] = useState(false);
@@ -111,6 +102,7 @@ const FreshnessModel = () => {
   const [quantity, setQuantity] = useState(1);
   const [isLiked, setIsLiked] = useState(false);
   const [showCamera, setShowCamera] = useState(false);
+  const [tableData, setTableData] = useState([]);
 
   const base64ToFile = (base64String, filename) => {
     const arr = base64String.split(',');
@@ -141,6 +133,19 @@ const FreshnessModel = () => {
     setShowCamera(false);
   };
 
+  useEffect(() => {
+    // Fetch table data on load
+    const fetchData = async () => {
+      try {
+        const response = await axios.get('/api/fetch-data'); // Replace with your API endpoint
+        setTableData(response.data);
+      } catch (error) {
+        console.error('Error fetching table data:', error);
+      }
+    };
+    fetchData();
+  }, []);
+
   const detectFruit = async (file) => {
     setLoading(true);
     setError(null);
@@ -158,24 +163,24 @@ const FreshnessModel = () => {
 
       setDetectionResult(response.data);
       setQuantity(1);
-    } catch (err) {
+      // Add new data to the table
+      const newEntry = {
+        timestamp: new Date().toISOString(),
+        produce: response.data.fruit_class,
+        freshness: `${(response.data.confidence * 100).toFixed(2)}%`,
+        expectedLifeSpan: response.data.shelf_life.estimated_days,
+      };
+      setTableData((prev) => [newEntry, ...prev]);
+
+      // Save new entry to the database
+      await axios.post('/api/add-data', newEntry);
+
+      } catch (err) {
       console.error('Error detecting fruit:', err);
       setError('An error occurred while detecting the fruit. Please try again.');
       setQuantity(0);
     } finally {
       setLoading(false);
-    }
-  };
-
-  const incrementQuantity = () => {
-    if (detectionResult) { 
-      setQuantity(prev => prev + 1);
-    }
-  };
-
-  const decrementQuantity = () => {
-    if (detectionResult && quantity > 1) { 
-      setQuantity(prev => prev - 1);
     }
   };
 
@@ -269,13 +274,6 @@ const FreshnessModel = () => {
               <p className={styles.description}>
                 {detectionResult ? (
                   <>
-                    <strong>Confidence:</strong> {(detectionResult.confidence * 100).toFixed(2)}%<br/>
-                    <strong>Shelf Life:</strong> {detectionResult.shelf_life.estimated_days} days<br/>
-                    <strong>Storage Information:</strong><br/>
-                    • Refrigerator: {detectionResult.shelf_life.refrigerator}<br/>
-                    • Freezer: {detectionResult.shelf_life.freezer}<br/>
-                    • Shelf: {detectionResult.shelf_life.shelf}<br/>
-                    <strong>Expiry Date:</strong> {detectionResult.expiry_date}
                   </>
                 ) : (
                   "Upload/Capture Fresh Produce's image to analyze its freshness. Our Freshness detection model will detect the fruit type and provide detailed information about its shelf life, storage recommendations, and expiry estimates."
@@ -321,20 +319,42 @@ const FreshnessModel = () => {
           </div>
         </div>
       </div>
-      
-      {/* Separated card grid section */}
-      <div className={styles.cardGridSection}>
-        <div className={styles.cardGrid}>
-          {cardData.map((card, index) => (
-            <div key={index} className={styles.card}>
-              <h2>{card.title}</h2>
-              <p>{card.description}</p>
-            </div>
-          ))}
-        </div>
+          {/* Section 2: History */}
+    <div className={styles.historyContainer}>
+      <h2 className={styles.historyHeading}>History</h2>
+      <div className={styles.tableContainer}>
+        <table className={styles.table}>
+          <thead>
+            <tr>
+              <th>Sl. No</th>
+              <th>Timestamp</th>
+              <th>Produce (Good/Bad/Mixed)</th>
+              <th>Confidence</th>
+              <th>Expected Life Span (Days)</th>
+            </tr>
+          </thead>
+          <tbody>
+            {tableData.length > 0 ? (
+              tableData.map((row, index) => (
+                <tr key={index}>
+                  <td>{index + 1}</td>
+                  <td>{new Date(row.timestamp).toLocaleString()}</td>
+                  <td>{row.produce}</td>
+                  <td>{row.freshness}</td>
+                  <td>{row.expectedLifeSpan}</td>
+                </tr>
+              ))
+            ) : (
+              <tr>
+                <td colSpan="5">No data available</td>
+              </tr>
+            )}
+          </tbody>
+        </table>
       </div>
-    </>
-  );
+    </div>
+  </>
+  )
 };
 
-export default FreshnessModel;
+export default FreshnessModel ;
