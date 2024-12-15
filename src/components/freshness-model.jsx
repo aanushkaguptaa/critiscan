@@ -3,7 +3,7 @@
 import Image from 'next/image';
 import React, { useState, useRef, useEffect } from 'react';
 import styles from '../styles/FreshnessModel.module.css';
-import axios from 'axios';
+// import axios from 'axios';
 import Webcam from 'react-webcam';
 
 const API_URL = 'http://13.203.99.136/';
@@ -110,13 +110,27 @@ const FreshnessModel = () => {
     const bstr = atob(arr[1]);
     let n = bstr.length;
     const u8arr = new Uint8Array(n);
-    
+
     while (n--) {
       u8arr[n] = bstr.charCodeAt(n);
     }
-    
+
     return new File([u8arr], filename, { type: mime });
   };
+
+  const loadTableData = () => {
+    const savedData = localStorage.getItem("tableData");
+    return savedData ? JSON.parse(savedData) : [];
+  };
+
+  const saveTableData = (data) => {
+    localStorage.setItem("tableData", JSON.stringify(data));
+  };
+
+  useEffect(() => {
+    // Load table data from localStorage on component mount
+    setTableData(loadTableData());
+  }, []);
 
   const handleImageUpload = async (e) => {
     const file = e.target.files[0];
@@ -128,61 +142,54 @@ const FreshnessModel = () => {
 
   const handleCameraCapture = (image) => {
     setSelectedImage(image);
-    const capturedFile = base64ToFile(image, 'captured-image.jpg');
+    const capturedFile = base64ToFile(image, "captured-image.jpg");
     detectFruit(capturedFile);
     setShowCamera(false);
   };
 
-  useEffect(() => {
-    // Fetch table data on load
-    const fetchData = async () => {
-      try {
-        const response = await axios.get('/api/fetch-data'); // Replace with your API endpoint
-        setTableData(response.data);
-      } catch (error) {
-        console.error('Error fetching table data:', error);
-      }
-    };
-    fetchData();
-  }, []);
-
   const detectFruit = async (file) => {
     setLoading(true);
     setError(null);
-    
+
     try {
       const formData = new FormData();
-      formData.append('image', file);
+      formData.append("image", file);
 
-      const response = await axios.post(`${API_URL}/detect_fruit`, formData, {
-        headers: {
-          'Content-Type': 'multipart/form-data',
-        },
-        timeout: 30000,
+      const response = await fetch(`${API_URL}/detect_fruit`, {
+        method: "POST",
+        body: formData,
       });
 
-      setDetectionResult(response.data);
+      if (!response.ok) {
+        throw new Error("Failed to detect fruit.");
+      }
+
+      const data = await response.json();
+      setDetectionResult(data);
       setQuantity(1);
+
       // Add new data to the table
       const newEntry = {
         timestamp: new Date().toISOString(),
-        produce: response.data.fruit_class,
-        freshness: `${(response.data.confidence * 100).toFixed(2)}%`,
-        expectedLifeSpan: response.data.shelf_life.estimated_days,
+        produce: data.fruit_class,
+        freshness: `${(data.confidence * 100).toFixed(2)}%`,
+        expectedLifeSpan: data.shelf_life.estimated_days,
       };
-      setTableData((prev) => [newEntry, ...prev]);
 
-      // Save new entry to the database
-      await axios.post('/api/add-data', newEntry);
+      const updatedTableData = [newEntry, ...tableData];
+      setTableData(updatedTableData);
+      saveTableData(updatedTableData);
 
-      } catch (err) {
-      console.error('Error detecting fruit:', err);
-      setError('An error occurred while detecting the fruit. Please try again.');
+    } catch (err) {
+      console.error("Error detecting fruit:", err);
+      setError("An error occurred while detecting the fruit. Please try again.");
       setQuantity(0);
     } finally {
       setLoading(false);
     }
   };
+
+
 
   return (
     <>
