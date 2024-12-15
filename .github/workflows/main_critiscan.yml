@@ -1,4 +1,7 @@
-name: Build and deploy Node.js app to Azure Web App - critiscan
+# Docs for the Azure Web Apps Deploy action: https://github.com/Azure/webapps-deploy
+# More GitHub Actions for Azure: https://github.com/Azure/actions
+
+name: Build and deploy Node.js app to Azure Web App - Critiscan
 
 on:
   push:
@@ -18,13 +21,14 @@ jobs:
         with:
           node-version: '18.x'
 
-      - name: Install dependencies and build
+      - name: npm install, build, and test
         run: |
           npm install
-          npm run build
+          npm run build --if-present
+          npm run test --if-present
 
       - name: Zip artifact for deployment
-        run: zip -r release.zip .next package.json node_modules public
+        run: zip release.zip ./* -r
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v4
@@ -39,7 +43,7 @@ jobs:
       name: 'Production'
       url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
     permissions:
-      id-token: write
+      id-token: write #This is required for requesting the JWT
 
     steps:
       - name: Download artifact from build job
@@ -49,18 +53,19 @@ jobs:
 
       - name: Unzip artifact for deployment
         run: unzip release.zip
-
+      
       - name: Login to Azure
         uses: azure/login@v2
         with:
-          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_B6B3A154646E454CAA04522086F1B247 }}
-          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_AF6840CB0E3F443CB5DF2626669C0AED }}
-          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_DFA5CF3CF3E040C0A4E144077C489A37 }}
+          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_2C75EA5A42D6419A9F6C3DB6D51404C3 }}
+          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_FD03643AE74C4F148235D4288F0DCB4A }}
+          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_4F5284952CA848899EF0836D0B3EE8D0 }}
 
       - name: 'Deploy to Azure Web App'
         id: deploy-to-webapp
         uses: azure/webapps-deploy@v3
         with:
-          app-name: 'critiscan'
+          app-name: 'Critiscan'
           slot-name: 'Production'
-          package: release.zip
+          package: .
+          
