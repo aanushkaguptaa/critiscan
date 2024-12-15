@@ -6,7 +6,7 @@ import styles from '../styles/FreshnessModel.module.css';
 // import axios from 'axios';
 import Webcam from 'react-webcam';
 
-const API_URL = 'http://13.203.99.136/';
+const API_URL = 'https://www.flipkart-freshness.duckdns.org/';
 
 const CameraComponent = ({ onCapture, onClose }) => {
   const webcamRef = useRef(null);

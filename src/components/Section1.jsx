@@ -49,6 +49,15 @@ const Section1 = () => {
                   />
                   <span>Perform OCR</span>
                 </Link>
+                <Link href="/fmcg" className={styles.modelButton}>
+                  <Image 
+                    src="/upload-white.svg" 
+                    alt="Brand Detection" 
+                    width={24} 
+                    height={24} 
+                  />
+                  <span>Live Brand Detection and Object Counting</span>
+                </Link>
               </div>
             </div>
             <div className={styles.mobileHowItWorks}>
