@@ -32,6 +32,22 @@
     background-color: var(--bg-light, #f0f0f0);
     border-radius: 8px;
     overflow: hidden;
+    display: flex;
+    justify-content: space-between;
+    /* Add any additional styling as needed */
+}
+
+.videoContainer,
+.processedFrameContainer {
+    flex: 1;
+    margin: 10px;
+    text-align: center;
+}
+
+.videoFeed,
+.processedFrame {
+    max-width: 100%;
+    height: auto;
 }
 
 .videoFeed {
